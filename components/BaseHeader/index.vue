@@ -36,7 +36,7 @@
         <v-btn
           color="success"
           class="ma-2 white--text"
-          @click="addPost()"
+          @click="showAddModal()"
         >
           Новый пост
           <v-icon
@@ -51,6 +51,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'BaseHeader',
   data () {
@@ -77,6 +78,12 @@ export default {
     }
   },
   methods: {
+    ...mapActions({
+      setIsShow: 'setShowModal'
+    }),
+    showAddModal () {
+      this.setIsShow(true)
+    },
     addPost () {
       console.log('add')
     }
