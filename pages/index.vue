@@ -3,7 +3,7 @@
     <v-col class="mx-6">
       <BaseModal />
       <SearchField />
-      <p>index page</p>
+      <PostsList />
     </v-col>
   </v-row>
 </template>
@@ -11,11 +11,13 @@
 <script>
 import SearchField from '@/components/SearchField'
 import BaseModal from '@/components/BaseModal'
+import PostsList from '@/components/PostsList'
 export default {
   name: 'IndexPage',
   components: {
     SearchField,
-    BaseModal
+    BaseModal,
+    PostsList
   }
 }
 </script>
