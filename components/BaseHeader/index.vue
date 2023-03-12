@@ -31,7 +31,21 @@
       app
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-toolbar-title>Welcome to the Vuetify + Nuxt.js template</v-toolbar-title>
+      <v-row class="align-center justify-space-between ml-2">
+        <v-toolbar-title>Welcome to the Vuetify + Nuxt.js template</v-toolbar-title>
+        <v-btn
+          color="success"
+          class="ma-2 white--text"
+          @click="addPost()"
+        >
+          Новый пост
+          <v-icon
+            right
+          >
+            mdi-plus
+          </v-icon>
+        </v-btn>
+      </v-row>
     </v-app-bar>
   </v-container>
 </template>
@@ -60,6 +74,11 @@ export default {
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js'
+    }
+  },
+  methods: {
+    addPost () {
+      console.log('add')
     }
   }
 }
