@@ -32,7 +32,9 @@
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-row class="align-center justify-space-between mx-4">
-        <v-toolbar-title>Welcome to the Vuetify + Nuxt.js template</v-toolbar-title>
+        <v-toolbar-title class="title">
+          Welcome to the Vuetify + Nuxt.js template
+        </v-toolbar-title>
         <v-btn
           color="success"
           class="ma-2 white--text"
@@ -86,3 +88,14 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.title {
+  @media (max-width: 900px) {
+    font-size: 16px !important;
+  }
+  @media (max-width: 600px) {
+    display: none
+  }
+}
+</style>
