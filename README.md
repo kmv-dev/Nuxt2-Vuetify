@@ -1,4 +1,4 @@
-# nap
+# test разворачивать на localhost:3000 node.js v14.21.3
 
 ## Build Setup
 
@@ -7,7 +7,7 @@
 $ npm install
 
 # serve with hot reload at localhost:3000
-$ npm run dev
+$ npm run dev 
 
 # build for production and launch server
 $ npm run build

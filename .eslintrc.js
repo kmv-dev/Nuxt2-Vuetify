@@ -17,5 +17,5 @@ module.exports = {
     'jest'
   ],
   // add your custom rules here
-  rules: {}
+  rules: { 'no-console': 'off' }
 }
