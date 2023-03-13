@@ -38,14 +38,15 @@ export default {
   name: 'PostsList',
   data () {
     return {
-      selected: [0],
+      selected: [],
       page: 1,
       itemsVisible: 10
     }
   },
   computed: {
     ...mapGetters({
-      posts: 'getPosts'
+      posts: 'getPosts',
+      getModalStatus: 'getModalStatus'
     }),
     totalPages () {
       return Math.round((this.posts.length / this.itemsVisible) + 1)
@@ -57,6 +58,11 @@ export default {
       const start = (this.page - 1) * this.itemsVisible
       const end = start + this.itemsVisible
       return this.posts.slice(start, end)
+    }
+  },
+  watch: {
+    getModalStatus () {
+      this.selected = []
     }
   },
   methods: {
