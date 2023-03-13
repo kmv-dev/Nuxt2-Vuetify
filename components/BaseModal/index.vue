@@ -2,14 +2,14 @@
   <v-dialog v-if="modalParams.isOpen" v-model="dialog" persistent max-width="600px">
     <v-card>
       <v-card-title>
-        <span class="headline">User Profile</span>
+        <span v-if="modalParams.isStatus === 'new'" class="headline">Создание поста</span>
+        <span v-else class="headline">Редактирование поста</span>
       </v-card-title>
       <v-textarea
         v-model="text"
         class="mx-4"
         outlined
-        name="input-7-4"
-        label="Outlined textarea"
+        :label="modalParams.isStatus === 'new' ? 'Новый текст' : 'Изменить текущий текст'"
       />
       <v-card-actions>
         <v-spacer />
