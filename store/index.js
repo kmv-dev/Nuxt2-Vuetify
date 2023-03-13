@@ -16,12 +16,19 @@ export const mutations = {
     state.showParams.isStatus = payload.isStatus
   },
   setEditPost (state, payload) {
-    const editPosts = state.posts.map(post => (
+    state.posts = state.posts.map(post => (
       post.id === payload.id
         ? { ...post, name: payload.name }
         : post
     ))
-    state.posts = editPosts
+  },
+  setSearch (state, searchValue) {
+    state.posts = state.posts.filter((post) => {
+      return post.name?.toLowerCase().includes(searchValue.toLowerCase())
+    })
+  },
+  setDeletePost (state, id) {
+    state.posts = state.posts.filter(post => post.id !== id)
   },
   setPosts (state, data) {
     state.posts = data
@@ -58,6 +65,12 @@ export const actions = {
   },
   editPost ({ commit }, payload) {
     commit('setEditPost', payload)
+  },
+  deletePost ({ commit }, id) {
+    commit('setDeletePost', id)
+  },
+  search ({ commit }, searchValue) {
+    commit('setSearch', searchValue)
   },
   async nuxtServerInit ({
     commit

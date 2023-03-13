@@ -2,7 +2,6 @@
   <v-list two-line>
     <v-list-item-group
       v-model="selected"
-      multiple
     >
       <v-list-item v-for="(item) in paginatedPosts" :key="item.title" class="pr-0">
         <v-list-item-content>
@@ -17,7 +16,7 @@
             @click="showEditModal(item)"
           >
             edit
-          </v-btn><v-btn color="error" class="mr-2">
+          </v-btn><v-btn color="error" class="mr-2" @click="deletePost(item.id)">
             delete
           </v-btn>
         </v-list-item-action>
@@ -68,12 +67,16 @@ export default {
   methods: {
     ...mapActions({
       setModalParams: 'setShowModalParams',
-      setModalOptions: 'setModalOptions'
+      setModalOptions: 'setModalOptions',
+      delete: 'deletePost'
     }),
     async showEditModal (item) {
       const payload = { isOpen: true, isStatus: 'edit' }
       await this.setModalOptions(item)
       this.setModalParams(payload)
+    },
+    deletePost (id) {
+      this.delete(id)
     }
   }
 }
