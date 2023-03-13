@@ -14,7 +14,7 @@
           <v-btn
             color="warning"
             class="mr-2"
-            @click="showEditModal()"
+            @click="showEditModal(item)"
           >
             edit
           </v-btn><v-btn color="error" class="mr-2">
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'PostsList',
   data () {
@@ -44,27 +44,30 @@ export default {
     }
   },
   computed: {
-    posts () {
-      return this.$store.getters.getPosts
-    },
+    ...mapGetters({
+      posts: 'getPosts'
+    }),
     totalPages () {
-      return Math.round((this.posts.length / this.itemsVisible) - 1)
+      return Math.round((this.posts.length / this.itemsVisible) + 1)
+    },
+    currentPage () {
+      return this.page + 1
     },
     paginatedPosts () {
-      const start = this.page * this.itemsVisible
+      const start = (this.page - 1) * this.itemsVisible
       const end = start + this.itemsVisible
       return this.posts.slice(start, end)
     }
   },
   methods: {
     ...mapActions({
-      setIsShow: 'setShowModal'
+      setModalParams: 'setShowModalParams',
+      setModalOptions: 'setModalOptions'
     }),
-    showEditModal () {
-      this.setIsShow(true)
-    },
-    edit () {
-      console.log('edit')
+    async showEditModal (item) {
+      const payload = { isOpen: true, isStatus: 'edit' }
+      await this.setModalOptions(item)
+      this.setModalParams(payload)
     }
   }
 }

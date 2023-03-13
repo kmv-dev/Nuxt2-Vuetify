@@ -31,7 +31,7 @@
       app
     >
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
-      <v-row class="align-center justify-space-between ml-2">
+      <v-row class="align-center justify-space-between mx-4">
         <v-toolbar-title>Welcome to the Vuetify + Nuxt.js template</v-toolbar-title>
         <v-btn
           color="success"
@@ -59,6 +59,7 @@ export default {
       clipped: true,
       drawer: true,
       fixed: true,
+      miniVariant: false,
       items: [
         {
           icon: 'mdi-home',
@@ -70,22 +71,17 @@ export default {
           title: 'Some page',
           to: '/somepage'
         }
-      ],
-      miniVariant: false,
-      right: true,
-      rightDrawer: false,
-      title: 'Vuetify.js'
+      ]
     }
   },
   methods: {
     ...mapActions({
-      setIsShow: 'setShowModal'
+      setModalParams: 'setShowModalParams',
+      setModalOptions: 'setModalOptions'
     }),
     showAddModal () {
-      this.setIsShow(true)
-    },
-    addPost () {
-      console.log('add')
+      const payload = { isOpen: true, isStatus: 'new' }
+      this.setModalParams(payload)
     }
   }
 }
